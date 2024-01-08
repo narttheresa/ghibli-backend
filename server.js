@@ -1,44 +1,17 @@
-const express = require('express');
-const axios = require('axios');
-const cors = require('cors'); // Add CORS middleware
+const jsonServer = require("json-server");
+const cors = require("cors"); 
+const path = require("path"); 
+const server = jsonServer.create();
+const router = jsonServer.router(path.join(__dirname, "db.json"));
+const middlewares =jsonServer.defaults();
 
-const app = express();
-const PORT = 3000;
+server.use(cors());
+server.use(jsonServer.bodyParser);
+server.use(middlewares);
+server.use(router);
 
-app.use(cors()); // Enable CORS for all routes
+const PORT = process.env.PORT || 3001; 
 
-app.get('/films', async (req, res) => {
-  try {
-    const response = await axios.get('https://ghibliapi.dev/films');
-    const filmsData = response.data;
-
-    // Store filmsData in your backend storage (e.g., in-memory, database)
-    // ...
-
-    res.json(filmsData);
-  } catch (error) {
-    console.error('Error fetching films from the API:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-});
-
-app.get('/characters', async (req, res) => {
-  try {
-    const response = await axios.get('https://ghibliapi.dev/people');
-    const charactersData = response.data;
-
-    // Store charactersData in your backend storage (e.g., in-memory, database)
-    // ...
-
-    res.json(charactersData);
-  } catch (error) {
-    console.error('Error fetching characters from the API:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-});
-
-// Other routes...
-
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+server.listen(PORT, () => {
+    console.log(`JSON Server is running on http://localhost:${PORT}`);
+})
