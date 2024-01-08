@@ -1,5 +1,14 @@
 {
   "favourites": [
-    
+    {
+      "filmId": "86e544fd-79de-4e04-be62-5be67d8dd92e",
+      "title": "Nausicaä of the Valley of the Wind",
+      "description": "Warrior and pacifist Princess Nausicaä desperately struggles to prevent two warring nations from destroying themselves and their dying planet.",
+      "releaseDate": "1984",
+      "runningTime": "117",
+      "ratingScore": "89",
+      "img": "https://www.themoviedb.org/t/p/original/tcrkfB8SRPQCgwI88hQScua6nxh.jpg",
+      "id": 1
+    }
   ]
 }
